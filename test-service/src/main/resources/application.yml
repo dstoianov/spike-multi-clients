@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: test-service
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+
+# Enable graceful shutdown
+server.shutdown: graceful
+
+logging:
+  level:
+    .: ERROR
+    org.springframework: ERROR
+    se.techinsight: INFO
+
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /doc
+  packages-to-scan: se.techinsight
