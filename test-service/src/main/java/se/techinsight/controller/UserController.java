@@ -7,6 +7,7 @@ import se.techinsight.dto.UserDto;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
@@ -14,21 +15,23 @@ import java.util.stream.LongStream;
 public class UserController implements UserApi {
 
     private final Faker faker = new Faker();
-    private List<UserDto> usersRepo;
+    private final AtomicLong atomicLong = new AtomicLong(1);
+
+    private List<UserDto> userRepository;
 
     @PostConstruct
     private void init() {
-        usersRepo = generateUsers();
+        userRepository = generateUsers();
     }
 
     @Override
     public List<UserDto> getAll() {
-        return usersRepo;
+        return userRepository;
     }
 
     @Override
     public UserDto getById(Long id) {
-        return usersRepo.stream()
+        return userRepository.stream()
             .filter(userDto -> userDto.getId().equals(id))
             .findFirst()
             .orElseThrow(RuntimeException::new);
@@ -36,25 +39,25 @@ public class UserController implements UserApi {
 
     @Override
     public void delete(Long id) {
-        usersRepo.removeIf(user -> user.getId().equals(id));
+        userRepository.removeIf(user -> user.getId().equals(id));
     }
 
     @Override
     public UserDto create(UserDto payload) {
-        payload.setId(usersRepo.size() + 10L);
-        usersRepo.add(payload);
+        payload.setId(atomicLong.getAndIncrement());
+        userRepository.add(payload);
         return payload;
     }
 
     private List<UserDto> generateUsers() {
         return LongStream.rangeClosed(1L, 10L)
-            .mapToObj(this::generateUser)
+            .mapToObj(i -> generateUser())
             .collect(Collectors.toList());
     }
 
-    private UserDto generateUser(Long id) {
+    private UserDto generateUser() {
         UserDto user = new UserDto();
-        user.setId(id);
+        user.setId(atomicLong.getAndIncrement());
         user.setFirstName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
         return user;

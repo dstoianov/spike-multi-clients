@@ -12,8 +12,10 @@ public class UserDto {
 
     @JsonView({Views.Internal.class})
     private Long id;
+
     @JsonView({Views.Public.class})
     private String firstName;
+
     @JsonView({Views.Public.class})
     private String lastName;
 }

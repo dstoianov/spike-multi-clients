@@ -1,0 +1,12 @@
+server:
+  port: 8090
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /doc
+  packages-to-scan: se.techinsight
+
+
+users.ribbon.listOfServers: localhost:8080
+
