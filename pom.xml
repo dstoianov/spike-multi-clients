@@ -24,6 +24,7 @@
         <module>api-library</module>
         <module>test-service</module>
         <module>feign-client</module>
+        <module>discovery-service</module>
     </modules>
 
 
