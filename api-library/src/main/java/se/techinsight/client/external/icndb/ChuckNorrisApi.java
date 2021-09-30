@@ -10,7 +10,7 @@ import se.techinsight.dto.external.icndb.RandomAllDto;
 
 import java.util.Map;
 
-@FeignClient(name = "chuck-norris", url = "http://api.icndb.com")
+@FeignClient(name = "chuck-norris", url = "http://api.icndb.com") // UI https://www.icndb.com/api/
 //@RequestMapping(value = "/jokes")
 public interface ChuckNorrisApi {
 

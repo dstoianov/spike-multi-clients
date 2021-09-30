@@ -19,6 +19,6 @@ public class UserDto {
     @JsonView({Views.Public.class})
     private String lastName;
 
-    @JsonView({Views.Public.class})
-    private String lastName2;
+//    @JsonView({Views.Public.class})
+//    private String lastName2;
 }
