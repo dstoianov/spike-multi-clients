@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import se.techinsight.client.external.icndb.ChuckNorrisApi;
+import se.techinsight.dto.external.icndb.CategoriesDto;
 import se.techinsight.dto.external.icndb.OneJokeDto;
 import se.techinsight.dto.external.icndb.RandomAllDto;
 
@@ -43,6 +44,11 @@ public class ChuckController {
     @GetMapping(value = "/joke/count", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> count() {
         return chuckClient.countOfJokes();
+    }
+
+    @GetMapping(value = "/joke/categories", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CategoriesDto categories() {
+        return chuckClient.listOfCategories();
     }
 
 }
