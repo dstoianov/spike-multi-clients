@@ -5,19 +5,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import se.techinsight.dto.UserDto;
 import se.techinsight.view.Views;
 
 import java.util.List;
 
 @Tag(name = "Users Controller", description = "I am an awesome description for controller")
-@FeignClient(name = "users")
+@FeignClient(name = "test-service")
 @RequestMapping(value = "/users")
 public interface UserApi {
 

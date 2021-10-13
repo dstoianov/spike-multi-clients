@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: feign-client-service
+
 server:
   port: 8090
 
@@ -7,6 +11,32 @@ springdoc:
     path: /doc
   packages-to-scan: se.techinsight
 
+#users.ribbon.listOfServers: localhost:8080, localhost:8080
+#customers.ribbon.listOfServers: localhost:8091,ip2:8091,
 
-users.ribbon.listOfServers: localhost:8080
 
+logging:
+  level:
+    .: ERROR
+    org.springframework.web: DEBUG
+    se.techinsight: DEBUG
+
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: false
